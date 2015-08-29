@@ -1,4 +1,10 @@
-app.controller('MainController', ['$scope', function($scope) {
-	$scope.greeting = 'Hola';
-   //console.log($scope.greeting);
+app.controller('MainController', ['$scope', '$http',  function($scope, $http) {
+	$scope.task = {
+        title: "",
+        description: "",
+
+    };
+
+    $scope.submit = function(){ $http.post('/task', JSON.stringify($scope.task)) };
+
 }]);

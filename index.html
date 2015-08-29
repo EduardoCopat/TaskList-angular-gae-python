@@ -11,9 +11,17 @@
   <body ng-app="myApp">
 	<div ng-controller="MainController">
 		<h1>Task list</h1>
-		<h2> Opa {{greeting}}</h2>
-	</div>
 
+		<h3>add task:</h3>
+		<form name="addTask" ng-submit="submit()">
+
+			Title:    <br/><input type="text" ng-model="task.title">    <br/><br/>
+			Description: <br/><input type="text" ng-model="task.description"> <br/><br/>
+
+			<input type="submit">
+		</form>
+
+	</div>
 
   </body>
 </html>
