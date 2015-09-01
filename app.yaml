@@ -8,17 +8,12 @@ handlers:
 - url: /favicon\.ico
   static_files: favicon.ico
   upload: favicon\.ico
-  
-- url: /src/(.*\.js)$
-  mime_type: text/javascript
-  static_files: src/\1
-  upload: src/.*\.(js)$
-  
-- url: /src/(.*\.map)$
-  mime_type: text/javascript
-  static_files: src/\1
-  upload: src/.*\.(map)$  
-  
+
+
+- url: /src/web/js
+  static_dir: src/web/js
+
+
 - url: .*
   script: main.app
   

@@ -1,27 +1,46 @@
-<html >
+<html>
 <head>
-	
-	<script src="src/angular.min.js"></script>
-		 
-    <script src="src/app.js"></script>
-	
-	<script src="src/MainController.js"></script>
-	</head>
 
-  <body ng-app="myApp">
-	<div ng-controller="MainController">
-		<h1>Task list</h1>
+    <script src="src/web/js/angular.min.js"></script>
 
-		<h3>add task:</h3>
-		<form name="addTask" ng-submit="submit()">
+    <script src="src/web/js/app.js"></script>
 
-			Title:    <br/><input type="text" ng-model="task.title">    <br/><br/>
-			Description: <br/><input type="text" ng-model="task.description"> <br/><br/>
+    <script src="src/web/js/MainController.js"></script>
+</head>
 
-			<input type="submit">
-		</form>
+<body ng-app="myApp">
+<div ng-controller="MainController">
+    <h1>Task list</h1>
 
-	</div>
+    <table>
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="task in currentTasks">
+            <td>{{ '{{task.title}}' }}</td>
+            <td>{{ '{{task.description}}' }}</td>
+            <td>{{ '{{task.date}}' }}</td>
+        </tr>
+        </tbody>
 
-  </body>
+    </table>
+
+    <h3>add task:</h3>
+
+    <form name="addTask" ng-submit="submit()">
+
+        Title: <br/><input type="text" ng-model="taskToAdd.title"> <br/><br/>
+        Description: <br/><input type="text" ng-model="taskToAdd.description"> <br/><br/>
+
+        <input type="submit">
+    </form>
+
+</div>
+
+</body>
 </html>
