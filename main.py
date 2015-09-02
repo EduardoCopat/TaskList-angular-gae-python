@@ -17,9 +17,7 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        logging.info("oi1")
         template = JINJA_ENVIRONMENT.get_template('index.html')
-        logging.info("oi2")
         self.response.write(template.render())
 
 
@@ -37,6 +35,9 @@ class TaskHandler(webapp2.RequestHandler):
         taskRecord = TaskRecord(title=taskRequest.get('title'), description=taskRequest.get('description'))
 
         taskRecord.put()
+
+        self.response.headers['Content-Type'] = 'application/json'
+        self.response.write(json.dumps(taskRecord.to_dict(),  cls=DateEncoder))
         return
 
 
@@ -50,7 +51,7 @@ class DateEncoder(json.JSONEncoder):
 
 class TasksHandler(webapp2.RequestHandler):
     def get(self):
-        tasks = TaskRecord.query().fetch()
+        tasks = TaskRecord.query()
         tasks_json = []
         for task in tasks:
             tasks_json.append(task.to_dict())
