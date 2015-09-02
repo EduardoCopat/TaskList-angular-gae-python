@@ -1,5 +1,4 @@
 app.service('taskService', ['$http',  function($http) {
-
     this.readAllTasks = function(){
         return $http.get('/tasks')
     }

@@ -6,7 +6,8 @@ app.controller('taskController', ['$scope', 'taskService',  function($scope, tas
     };
 
     $scope.readAllTasks = function(){
-       taskService.readAllTasks().success(
+       readRequest = taskService.readAllTasks();
+       readRequest.success(
            function(response) {
                 $scope.currentTasks = response;
            }
@@ -23,5 +24,4 @@ app.controller('taskController', ['$scope', 'taskService',  function($scope, tas
     }
 
     $scope.readAllTasks();
-
 }]);
