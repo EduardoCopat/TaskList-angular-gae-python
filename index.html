@@ -1,6 +1,15 @@
 <html>
 <head>
 
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
     <script src="src/web/js/angular.min.js"></script>
 
     <script src="src/web/js/app.js"></script>
@@ -11,38 +20,58 @@
 </head>
 
 <body ng-app="myApp">
-<div ng-controller="taskController">
-    <h1>Task list</h1>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div ng-controller="taskController">
+            <h1>Task list</h1>
 
-    <table>
-        <thead>
-        <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Date</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="task in currentTasks">
-            <td>{{ '{{task.title}}' }}</td>
-            <td>{{ '{{task.description}}' }}</td>
-            <td>{{ '{{task.date}}' }}</td>
-        </tr>
-        </tbody>
+            <h3>Add task:</h3>
 
-    </table>
+            <div class="row">
+                <div class="col-md-6">
+                    <form name="addTask" ng-submit="submit()">
+                        <div class="form-group">
+                            <label for="title">Title:</label>
+                            <input id="title" class="form-control" type="text" ng-model="taskToAdd.title">
 
-    <h3>add task:</h3>
+                            <label for="description">Description:</label>
+                            <input id="description" class="form-control" type="text" ng-model="taskToAdd.description">
 
-    <form name="addTask" ng-submit="submit()">
+                            <input type="submit" value="Add task" class="btn btn-primary">
+                        </div>
+                    </form>
+                </div>
 
-        Title: <br/><input type="text" ng-model="taskToAdd.title"> <br/><br/>
-        Description: <br/><input type="text" ng-model="taskToAdd.description"> <br/><br/>
+                <div class="col-md-6"></div>
+            </div>
 
-        <input type="submit">
-    </form>
 
+            <h2>Current tasks</h2>
+            <table class="table table-striped">
+
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="task in currentTasks | orderBy: -date">
+                    <td>{{ '{{task.title}}' }}</td>
+                    <td>{{ '{{task.description}}' }}</td>
+                    <td>{{ '{{task.date | date : "medium"}}' }}</td>
+                </tr>
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+    <div class="col-md-2"></div>
 </div>
+
 
 </body>
 </html>

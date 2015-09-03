@@ -19,6 +19,8 @@ app.controller('taskController', ['$scope', 'taskService',  function($scope, tas
          postRequest.success(
              function(response){
                 $scope.currentTasks.push(response);
+                $scope.taskToAdd.title="";
+                $scope.taskToAdd.description="";
              }
          );
     }
